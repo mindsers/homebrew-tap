@@ -1,0 +1,12 @@
+version: 2
+
+updates:
+  # The only moving parts here are the actions in audit.yml; the formula itself
+  # is written by the release pipeline in mindsers/ohmyharness.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]

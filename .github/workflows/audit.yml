@@ -1,0 +1,67 @@
+name: audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  # The formula is written by a machine in another repository, so the thing
+  # most likely to break it is a change nobody made here. A weekly run also
+  # catches a release asset that has been deleted or replaced underneath us.
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  formula:
+    name: check formula (style and audit)
+    # macOS runners ship Homebrew, and the cops that matter only apply when the
+    # files are laid out as a tap. Linting a bare .rb instead applies Homebrew's
+    # *internal* rule set and reports missing Sorbet sigils and frozen-string
+    # comments that no formula anywhere has — Homebrew's own `jq` fails that way
+    # too. Hence the move into Library/Taps below rather than a path argument.
+    runs-on: macos-latest
+    steps:
+      - name: check out the tap
+        uses: actions/checkout@v5
+        with:
+          path: homebrew-tap
+
+      - name: put it where brew expects a tap
+        run: |
+          taps="$(brew --repository)/Library/Taps/mindsers"
+          mkdir -p "$taps"
+          mv homebrew-tap "$taps/homebrew-tap"
+
+      - name: style and audit
+        env:
+          # Passed as an environment variable rather than interpolated into the
+          # script. It is a trusted value, but a workflow where `${{ }}` appears
+          # inside a shell body is one where the next person adds an untrusted
+          # one the same way.
+          EVENT: ${{ github.event_name }}
+        run: |
+          shopt -s nullglob
+          formulae=("$(brew --repository)/Library/Taps/mindsers/homebrew-tap/Formula"/*.rb)
+          if [ ${#formulae[@]} -eq 0 ]; then
+            echo "no formulae yet — the release pipeline writes one on the first tag"
+            exit 0
+          fi
+
+          brew style mindsers/tap
+
+          # `--online` fetches the URLs and re-checks the checksums, which is
+          # the half that catches a release asset changing after the fact. It
+          # needs the network, so it is kept to the scheduled run rather than
+          # made a reason for a pull request to go red.
+          if [ "$EVENT" = "schedule" ]; then
+            brew audit --strict --online --tap mindsers/tap
+          else
+            brew audit --strict --tap mindsers/tap
+          fi

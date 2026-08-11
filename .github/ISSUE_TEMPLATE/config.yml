@@ -1,0 +1,14 @@
+# Nothing in this repository is written by hand, so an issue filed here is
+# almost always about omh itself and would sit unread beside the code that
+# could answer it. Both links go where the answer lives.
+blank_issues_enabled: false
+contact_links:
+  - name: Something wrong with omh
+    url: https://github.com/mindsers/ohmyharness/issues/new/choose
+    about: Bugs, features and questions about the tool itself.
+  - name: The formula is wrong or out of date
+    url: https://github.com/mindsers/ohmyharness/issues/new/choose
+    about: >
+      Formula/omh.rb is generated from a template in the main repository, so
+      that is where a fix has to land — a change made here is overwritten by
+      the next release.

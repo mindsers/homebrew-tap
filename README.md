@@ -33,7 +33,7 @@ template that lives there, whenever a version is tagged. Editing it here works
 until the next release overwrites it.
 
 Fix the template, not the output:
-[`.github/homebrew/omh.rb.tmpl`](https://github.com/mindsers/ohmyharness/blob/main/.github/homebrew/omh.rb.tmpl).
+[`packaging/homebrew/omh.rb.tmpl`](https://github.com/mindsers/ohmyharness/blob/main/packaging/homebrew/omh.rb.tmpl).
 
 Bugs, features and questions about omh itself belong in the
 [main repository](https://github.com/mindsers/ohmyharness/issues).

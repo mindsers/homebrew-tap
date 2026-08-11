@@ -2,45 +2,48 @@
 
 ## Reporting a vulnerability
 
-Report it against **omh itself**, not here:
-[private vulnerability reporting on mindsers/ohmyharness](https://github.com/mindsers/ohmyharness/security/advisories/new),
-or email **nathanael@cherrier.dev** with `omh security` in the subject.
+**A vulnerability in the software goes to the software's own repository**, not
+here. A formula is a few lines naming a download and its checksum; the code it
+installs lives elsewhere, and so does the person who can fix it.
 
-Please do not open a public issue.
+| formula | report to |
+|---|---|
+| `omh` | [mindsers/ohmyharness](https://github.com/mindsers/ohmyharness/security/advisories/new) — [its policy](https://github.com/mindsers/ohmyharness/blob/main/.github/SECURITY.md) |
 
-## What this repository is
+For anything about **this repository**, use
+[private vulnerability reporting](https://github.com/mindsers/homebrew-tap/security/advisories/new)
+or email **nathanael@cherrier.dev**. Please do not open a public issue.
 
-A Homebrew tap: one generated file naming release URLs and their SHA-256
-checksums. It holds no code of its own. `Formula/omh.rb` is written by the
-release pipeline in
-[mindsers/ohmyharness](https://github.com/mindsers/ohmyharness) and its
-checksums come from the release itself rather than being recomputed, so the
-formula cannot disagree with what was published.
+## What is in scope here
 
-That makes the interesting question here a narrow one: **does this formula
-still describe what omh actually released?** Worth reporting:
+A tap is a distribution point: it tells `brew` what to download and what that
+download should hash to. So the question this repository answers is a narrow
+one — **does each formula still describe what its project actually released?**
+
+Worth reporting:
 
 - a `sha256` that does not match the release asset it names
-- a `url` pointing anywhere other than a `mindsers/ohmyharness` release
-- a formula installing something other than the `omh` binary
-- an unexpected commit — every legitimate one is authored by the release
-  pipeline and says which tag it came from
+- a `url` pointing somewhere other than the project's own releases
+- a formula installing something other than what it claims to
+- an unexpected commit, particularly to a generated formula: every legitimate
+  one is authored by that project's release pipeline and names the tag it came
+  from
 
-Vulnerabilities *in omh* — the sandbox, credential handling, the sshd behind
-`omh attach` — belong in the main repository, which states its scope in
-[its own SECURITY.md](https://github.com/mindsers/ohmyharness/blob/main/.github/SECURITY.md).
+Out of scope: bugs in the installed software, and anything requiring an
+attacker who already has write access to this repository.
 
 ## Verifying an install yourself
 
-Every release publishes `SHA256SUMS`, and the formula's checksums are copied
-from it. The two can be compared without trusting either:
+Nothing here has to be taken on trust. A generated formula's checksums are
+copied from the release that produced them, so the two can be compared
+independently:
 
 ```console
-$ brew fetch mindsers/tap/omh          # prints the cached download and its hash
+$ brew fetch mindsers/tap/omh    # prints the cached download and its hash
 $ curl -fsSL https://github.com/mindsers/ohmyharness/releases/latest/download/SHA256SUMS
 ```
 
 ## Supported versions
 
-The tap always describes the most recent release, and only that one. There are
-no older formulae to patch.
+Each formula describes the current release of its project, and only that one.
+There are no older formulae to patch.

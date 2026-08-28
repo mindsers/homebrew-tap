@@ -21,24 +21,24 @@ class Omh < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/mindsers/ohmyharness/releases/download/v0.6.0/omh-aarch64-apple-darwin.tar.gz"
-      sha256 "97665d6233ad2edee77ebb7536249b352b6d8719279163da11ae7aff6c032520"
+      url "https://github.com/mindsers/ohmyharness/releases/download/v0.7.0/omh-aarch64-apple-darwin.tar.gz"
+      sha256 "632c32948f06b7b171a7abc5fc228eca48bd6c0b302224ead9da2633bef4f558"
     end
     on_intel do
-      url "https://github.com/mindsers/ohmyharness/releases/download/v0.6.0/omh-x86_64-apple-darwin.tar.gz"
-      sha256 "81218b463421aca98a47ab8e5e1f1828f51c450bc9b7ff3803cc9968e1eda941"
+      url "https://github.com/mindsers/ohmyharness/releases/download/v0.7.0/omh-x86_64-apple-darwin.tar.gz"
+      sha256 "de7c9521af42c1fff7548476c7baa2c9231ae708858881e1e8773e8302f4a0ac"
     end
   end
 
   on_linux do
     # Static musl, so one build covers every distribution.
     on_arm do
-      url "https://github.com/mindsers/ohmyharness/releases/download/v0.6.0/omh-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "b81052ab09ecbe5a2cb02b48e8d78c94bcec81032d08bc4b2314e38cf0b5f3dd"
+      url "https://github.com/mindsers/ohmyharness/releases/download/v0.7.0/omh-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "2960744abdaf53ba2bd9e6939551cfb15c62c05969f273fbc7145deadf9e1a0d"
     end
     on_intel do
-      url "https://github.com/mindsers/ohmyharness/releases/download/v0.6.0/omh-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "ad09b1be5113c9af2fd1c21670093848306900566463b23791490397940eed79"
+      url "https://github.com/mindsers/ohmyharness/releases/download/v0.7.0/omh-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "3d61c642beec9cc6741572d91959d0240a6689764d4527315ae5aa8343db7449"
     end
   end
 
@@ -74,6 +74,6 @@ class Omh < Formula
     # `brew test` runs in a scratch directory that is not a repository, so this
     # is the refusal, on stderr, exiting 1 — all three asserted.
     assert_match "not inside a git repository",
-                 shell_output("#{bin}/omh ls 2>&1", 1)
+                 shell_output("#{bin}/omh info 2>&1", 1)
   end
 end

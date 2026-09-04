@@ -21,24 +21,24 @@ class Omh < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/mindsers/ohmyharness/releases/download/v0.8.0/omh-aarch64-apple-darwin.tar.gz"
-      sha256 "df207cfc2a01db4e4106f10b5fa60466f24f814a5f16fbc66aa1eab31a7526f7"
+      url "https://github.com/mindsers/ohmyharness/releases/download/v0.9.0/omh-aarch64-apple-darwin.tar.gz"
+      sha256 "6cf1c741b58a6dee101abe2b338415613760a4d675c2338ca3c88ff2cdaa1ff5"
     end
     on_intel do
-      url "https://github.com/mindsers/ohmyharness/releases/download/v0.8.0/omh-x86_64-apple-darwin.tar.gz"
-      sha256 "f399542763b67c31d2adaa4f7238ba16b3405c1869323698e8fcb7376f528e79"
+      url "https://github.com/mindsers/ohmyharness/releases/download/v0.9.0/omh-x86_64-apple-darwin.tar.gz"
+      sha256 "530700f72af0372f5782bc44c7704aed9554050f60264470612289e18b5b5ba1"
     end
   end
 
   on_linux do
     # Static musl, so one build covers every distribution.
     on_arm do
-      url "https://github.com/mindsers/ohmyharness/releases/download/v0.8.0/omh-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "91ed133902b9408cfa75ce2d31b588b117fbe95687429da6f004abb75269126f"
+      url "https://github.com/mindsers/ohmyharness/releases/download/v0.9.0/omh-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "0b7468738045e2bac10691612ef42cfb36d53878909766b94f0e20ad81b1a1e7"
     end
     on_intel do
-      url "https://github.com/mindsers/ohmyharness/releases/download/v0.8.0/omh-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "1b21d4c94f2ba2bc5cbcc5b3ef6917197ca9906c1ef3f0fe851a8b84b85cd011"
+      url "https://github.com/mindsers/ohmyharness/releases/download/v0.9.0/omh-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "ca263f7bd2cb822d60be968ea5a92f6fb0e50f9d813d374607da9edbda6912f8"
     end
   end
 

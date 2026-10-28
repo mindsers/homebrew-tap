@@ -3,8 +3,8 @@
 class Configfile < Formula
   desc "Manage your dotfiles and setup scripts from a git repository"
   homepage "https://github.com/mindsers/configfile"
-  url "https://github.com/mindsers/configfile/releases/download/1.1.0/configfile-1.1.0.tgz"
-  sha256 "717416f415977ce345e923f7e88ca3c0b9f5fe039004a3d3c5d278392fa1a9d2"
+  url "https://github.com/mindsers/configfile/releases/download/2.0.0/configfile-2.0.0.tgz"
+  sha256 "4334cb1b2459123838600723eca31cc47dd8e7741c21ab02d9e34dc9a70f7822"
   license "Apache-2.0"
 
   depends_on "git"
